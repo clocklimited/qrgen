@@ -62,5 +62,5 @@ function createQRCode(req, callback) {
 // Starting Listening
 server.listen(properties.port, function () {
   console.log(properties.name + ' -- Starting')
-  console.log(properties.name + ' -- Listening at ' + properties.url)
+  console.log(properties.name + ' -- Listening at ' + properties.url + ':' + properties.port)
 })
