@@ -2,7 +2,7 @@
   "author": "Josh Wilson <josh.wilson@clock.co.uk>",
   "name": "QRCode",
   "description": "QR Code generator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com"
@@ -14,9 +14,11 @@
     "node": "0.8"
   },
   "dependencies": {
-     "qrcode": "0.2.4"
+     "qrcode": "0.2.4",
+     "restify": "1.4.4"
   },
   "devDependencies": {
-    "mocha": "1.7.0"
+    "mocha": "1.7.0",
+    "should": "1.2.1"
   }
 }
