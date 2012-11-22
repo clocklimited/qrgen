@@ -43,5 +43,16 @@ http://[hostname]:port/[version]/[format]?=[data]
 
 A .png image is then returned
 
+## Dependencies
+
+- Qrcode
+- Restify
+
+## Dev-Dependencies
+
+- Mocha
+- Should
+- Request
+
 ## Author
 [Josh Wilson](mailto:josh.wilson@clock.co.uk)
