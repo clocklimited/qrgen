@@ -14,11 +14,12 @@
     "node": "0.8"
   },
   "dependencies": {
-     "qrcode": "0.2.4",
-     "restify": "1.4.4"
+    "qrcode": "0.2.4",
+    "restify": "1.4.4"
   },
   "devDependencies": {
     "mocha": "1.7.0",
-    "should": "1.2.1"
+    "should": "1.2.1",
+    "request": "~2.12.0"
   }
 }
