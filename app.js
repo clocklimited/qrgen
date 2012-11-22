@@ -3,11 +3,6 @@ var restify = require('restify')
   , qrCode = require('qrcode')
   , properties = require('./properties')
 
-// Color log
-var red = '\033[31m'
-  , blue = '\033[34m'
-  , green = '\033[32m'
-
 // Create Server
 var server = restify.createServer()
 
@@ -32,7 +27,7 @@ server.get('/v1/', function (req, res, next) {
 server.get('/v1/:format', function (req, res, next) {
   if(req.params.data !== undefined) {
 
-    console.log(green + properties.name + ' -- request for ' + req.params.data)
+    console.log(properties.name + ' -- request for ' + req.params.data)
 
     // We create our QR Code
     createQRCode(req, function (err, base64Image) {
@@ -49,11 +44,11 @@ server.get('/v1/:format', function (req, res, next) {
         res.write(image)
         res.end()
 
-        console.log(green + properties.name + ' -- QRCode generated')
+        console.log(properties.name + ' -- QRCode generated')
         return next()
 
       } else {
-        console.log(red + properties.name + ' -- ERROR: ' + err)
+        console.log(properties.name + ' -- ERROR: ' + err)
         throw new Error(err)
       }
     })
@@ -70,6 +65,6 @@ function createQRCode(req, callback) {
 
 // Starting Listening
 server.listen(properties.port, function () {
-  console.log(blue + properties.name + ' -- Starting')
-  console.log(blue + properties.name + ' -- Listening at ' + properties.url + ':' + properties.port)
+  console.log(properties.name + ' -- Starting')
+  console.log(properties.name + ' -- Listening at ' + properties.url + ':' + properties.port)
 })
