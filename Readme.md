@@ -41,6 +41,9 @@ http://[hostname]:port/[version]/[format]?=[data]
 - **format** - Type of QR Code you wish to be generated. Only `qr`.
 - **data** - Add `data=` with string you wish to encode into the QRCode
 
+### Example Link
+[http://qrgen.clockte.ch/v1/qr?data=http://www.example.com](http://qrgen.clockte.ch/v1/qr?data=http://www.example.com)
+
 A .png image is then returned
 
 ## Dependencies
