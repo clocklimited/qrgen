@@ -58,4 +58,9 @@ A .png image is then returned
 - Request
 
 ## Author
-[Josh Wilson](mailto:josh.wilson@clock.co.uk)
+[Josh Wilson](https://github.com/joshwlsn/)
+
+## Licence
+Licenced under the [New BSD License](http://opensource.org/licenses/bsd-license.php)
+
+[View the source on GitHub](https://github.com/clocklimited/qrgen)

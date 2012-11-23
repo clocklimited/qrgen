@@ -16,6 +16,7 @@ server.use(restify.bodyParser());
 server.get('/', function (req, res) {
   fs.readFile(__dirname + '/Readme.md', 'utf-8', function (err, data) {
     res.write(markdown(data))
+    res.end()
   })
 })
 
