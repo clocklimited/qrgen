@@ -37,7 +37,7 @@ http://[hostname]:port/[version]/[format]?=[data]
 ```
 - **hostname** - If your on a local machine, this would be `localhost`
 - **port** - By default this is `3000`.
-- **version** - Version of api you are working with only `V1` at the momment.
+- **version** - Version of api you are working with only `v1` at the momment.
 - **format** - Type of QR Code you wish to be generated. Only `qr`.
 - **data** - Add `data=` with string you wish to encode into the QRCode
 
