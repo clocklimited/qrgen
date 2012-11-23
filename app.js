@@ -2,6 +2,8 @@
 var restify = require('restify')
   , qrCode = require('qrcode')
   , properties = require('./properties')
+  , markdown = require('github-flavored-markdown').parse
+  , fs = require('fs')
 
 // Create Server
 var server = restify.createServer()
@@ -11,10 +13,10 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
 // Index route
-server.get('/', function (req, res, next) {
-  res.write(properties.name + ' generator')
-  res.end()
-  return next()
+server.get('/', function (req, res) {
+  fs.readFile(__dirname + '/Readme.md', 'utf-8', function (err, data) {
+    res.write(markdown(data))
+  })
 })
 
 // Version 1 Api Route
@@ -38,7 +40,7 @@ server.get('/v1/:format', function (req, res, next) {
         // and remove the Mime type and encoding
         var image = new Buffer(base64Image.substring(22), 'base64')
 
-        // Send out buffer back
+        // Return buffer
         res.setHeader('Content-Type', 'image/png')
         res.setHeader('Content-Length', image.length)
         res.write(image)
