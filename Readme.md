@@ -31,7 +31,7 @@ sudo apt-get install libpixman-1-dev libcairo2-dev
 
 ### Url
 
-Submit POST request to:
+Submit GET request to:
 ```
 http://[hostname]:port/[version]/[format]?=[data]
 ```

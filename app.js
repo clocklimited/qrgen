@@ -28,36 +28,49 @@ server.get('/v1/', function (req, res, next) {
 })
 
 server.get('/v1/:format', function (req, res, next) {
-  if(req.params.data !== undefined) {
 
-    console.log(properties.name + ' -- request for ' + req.params.data)
+  console.log(req.params.data)
 
-    // We create our QR Code
-    createQRCode(req, function (err, base64Image) {
+  // Check format
+  if(req.params.format === 'qr') {
 
-      if(!err) {
+    console.log(properties.name + ' -- Request for ' + req.params.format + ' Code')
 
-        // Convert the base64Image to a buffer
-        // and remove the Mime type and encoding
-        var image = new Buffer(base64Image.substring(22), 'base64')
+    // Check data
+    if(req.params.data !== undefined) {
 
-        // Return buffer
-        res.setHeader('Content-Type', 'image/png')
-        res.setHeader('Content-Length', image.length)
-        res.write(image)
-        res.end()
+      console.log(properties.name + ' -- Encode ' + req.params.data)
 
-        console.log(properties.name + ' -- QRCode generated')
-        return next()
+      // We create our QR Code
+      createQRCode(req, function (err, base64Image) {
 
-      } else {
-        console.log(properties.name + ' -- ERROR: ' + err)
-        throw new Error(err)
-      }
-    })
+        if(!err) {
+
+          // Convert the base64Image to a buffer
+          // and remove the Mime type and encoding
+          var image = new Buffer(base64Image.substring(22), 'base64')
+
+          // Return buffer
+          res.setHeader('Content-Type', 'image/png')
+          res.setHeader('Content-Length', image.length)
+          res.write(image)
+          res.end()
+
+          console.log(properties.name + ' -- QRCode generated')
+          return next()
+
+        } else {
+          console.log(properties.name + ' -- ERROR: ' + err)
+          throw new Error(err)
+        }
+      })
+
+    } else {
+      throw new Error('Error: GET data is missing')
+    }
 
   } else {
-    throw new Error('Error: POST data is invaild')
+    throw new Error('Error: Incorrect format type')
   }
 })
 
