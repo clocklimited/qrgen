@@ -1,9 +1,10 @@
 {
-  "author": "Josh Wilson <josh.wilson@clock.co.uk>",
+  "author": "Paul Serby",
   "name": "QRGen",
   "description": "QR Code generator",
   "version": "2.0.0",
   "scripts": {
+    "start": "node app",
     "test": "mocha -r should -R spec"
   },
   "dependencies": {
