@@ -1,86 +1,63 @@
 // Packages
-var restify = require('restify')
+var express = require('express')
+  , morgan = require('morgan')
   , qrCode = require('qrcode')
   , properties = require('./properties')
-  , markdown = require('github-flavored-markdown').parse
+  , marked = require('marked')
   , fs = require('fs')
+  , join = require('path').join
+  , app = express()
+  , UberCache = require('uber-cache')
+  , cache = new UberCache(1000)
+  , uberMemoize = require('uber-memoize')
+  , memoize = uberMemoize('QR', cache)
+  , createQr = memoize(qrCode.toDataURL, 10 * 60000)
 
-// Create Server
-var server = restify.createServer()
-
-server.use(restify.acceptParser(server.acceptable));
-server.use(restify.queryParser());
-server.use(restify.bodyParser());
+app.use(morgan('combined'))
 
 // Index route
-server.get('/', function (req, res) {
-  fs.readFile(__dirname + '/Readme.md', 'utf-8', function (err, data) {
-    res.write(markdown(data))
+app.get('/', function (req, res, next) {
+  fs.readFile(join(__dirname, '/Readme.md'), 'utf-8', function (err, data) {
+    if (err) return next(err)
+    res.write(marked(data))
     res.end()
   })
 })
 
 // Version 1 Api Route
-server.get('/v1/', function (req, res, next) {
+app.get('/v1/', function (req, res, next) {
   res.write(properties.name + ' Api Version 1')
   res.end()
   return next()
 })
 
-server.get('/v1/:format', function (req, res, next) {
-
-  console.log(req.params.data)
+app.get('/v1/:format', function (req, res, next) {
 
   // Check format
-  if(req.params.format === 'qr') {
-
-    console.log(properties.name + ' -- Request for ' + req.params.format + ' Code')
-
-    // Check data
-    if(req.params.data !== undefined) {
-
-      console.log(properties.name + ' -- Encode ' + req.params.data)
-
-      // We create our QR Code
-      createQRCode(req, function (err, base64Image) {
-
-        if(!err) {
-
-          // Convert the base64Image to a buffer
-          // and remove the Mime type and encoding
-          var image = new Buffer(base64Image.substring(22), 'base64')
-
-          // Return buffer
-          res.setHeader('Content-Type', 'image/png')
-          res.setHeader('Content-Length', image.length)
-          res.write(image)
-          res.end()
-
-          console.log(properties.name + ' -- QRCode generated')
-          return next()
-
-        } else {
-          console.log(properties.name + ' -- ERROR: ' + err)
-          throw new Error(err)
-        }
-      })
-
-    } else {
-      throw new Error('Error: GET data is missing')
-    }
-
-  } else {
-    throw new Error('Error: Incorrect format type')
+  if (req.params.format !== 'qr') {
+    return next(new Error('Incorrect format type'))
   }
+
+  // Check data
+  if (req.query.data === undefined) {
+    return next(new Error('GET data is missing'))
+  }
+
+  // We create our QR Code
+  createQr(req.query.data, function (err, base64Image) {
+    if (err) return next(err)
+
+    var image = new Buffer(base64Image.substring(22), 'base64')
+
+    // Return buffer
+    res.set({ 'Content-Type': 'image/png', 'Content-Length': image.length })
+    res.write(image)
+    res.end()
+  })
 })
 
-// Generate QRCode
-function createQRCode(req, callback) {
-  qrCode.toDataURL(req.params.data, callback)
-}
-
 // Starting Listening
-server.listen(properties.port, function () {
+app.listen(properties.port, function () {
   console.log(properties.name + ' -- Starting')
   console.log(properties.name + ' -- Listening at ' + properties.url + ':' + properties.port)
 })
