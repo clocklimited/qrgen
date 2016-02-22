@@ -2,7 +2,7 @@
   "author": "Josh Wilson <josh.wilson@clock.co.uk>",
   "name": "QRGen",
   "description": "QR Code generator",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "test": "mocha -r should -R spec"
   },
