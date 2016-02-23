@@ -1,9 +1,7 @@
 var properties =
   { name: 'QRGen'
-  , version: '1.0.0'
   , apiVersion: 'v1'
-  , port: '8080'
-  , url: 'http://localhost'
+  , port: process.env.PORT || '8080'
   }
 
 module.exports = properties

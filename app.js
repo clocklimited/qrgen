@@ -58,6 +58,5 @@ app.get('/v1/:format', function (req, res, next) {
 
 // Starting Listening
 app.listen(properties.port, function () {
-  console.log(properties.name + ' -- Starting')
-  console.log(properties.name + ' -- Listening at ' + properties.url + ':' + properties.port)
+  console.log(properties.name + ' starting on ' + properties.port)
 })
