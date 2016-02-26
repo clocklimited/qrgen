@@ -5,7 +5,9 @@
   "version": "1.1.0",
   "scripts": {
     "start": "node app",
-    "test": "mocha -r should -R spec"
+    "test": "mocha -r should -R spec",
+    "build": "echo No build needed on this project!",
+    "prepare": "nave use 4 npm --registry http://npm.clockte.ch install && nave use 4 npm prune"
   },
   "dependencies": {
     "express": "^4.13.4",
