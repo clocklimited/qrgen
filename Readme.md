@@ -1,4 +1,7 @@
 # QRGen
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/clocklimited/qrgen.svg)](https://greenkeeper.io/)
+
 A node.js application which generates QR Codes and returns it as a .png image
 
 ## Installation
