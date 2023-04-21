@@ -32,6 +32,7 @@ app.get('/v1/', function (req, res, next) {
 })
 
 app.get('/v1/:format', function (req, res, next) {
+  const { data, width, scale } = req.query
 
   // Check format
   if (req.params.format !== 'qr') {
@@ -39,12 +40,12 @@ app.get('/v1/:format', function (req, res, next) {
   }
 
   // Check data
-  if (req.query.data === undefined) {
+  if (data === undefined) {
     return next(new Error('GET data is missing'))
   }
 
   // We create our QR Code
-  createQr(req.query.data, function (err, base64Image) {
+  createQr(data, { width, scale }, function (err, base64Image) {
     if (err) return next(err)
 
     var image = new Buffer(base64Image.substring(22), 'base64')

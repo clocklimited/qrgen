@@ -40,6 +40,8 @@ http://[hostname]:port/[version]/[format]?=[data]
 - **version** - Version of api you are working with only `v1` at the momment.
 - **format** - Type of QR Code you wish to be generated. Only `qr`.
 - **data** - Add `data=` with string you wish to encode into the QRCode
+- **width** - QR code width in pixels
+- **scale** - Scale the QR code image - number of pixels per "block" (default 4)
 
 ### Example Link
 [http://qrgen.clockte.ch/v1/qr?data=http://www.example.com](http://qrgen.clockte.ch/v1/qr?data=http://www.example.com)
