@@ -8,7 +8,7 @@ A node.js application which generates QR Codes and returns it as a .png image
   git clone https://github.com/clocklimited/qrgen
 ```
 
-###Install Pixman and Cairo
+### Install Pixman and Cairo
 
 OSx 10.8
 ```
@@ -17,12 +17,12 @@ brew install cairo
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 ```
 
-Unbuntu
+Ubuntu
 ```
 sudo apt-get install libpixman-1-dev libcairo2-dev
 ```
 
-###Install dependencies
+### Install dependencies
 ```
   npm install
 ```
@@ -60,7 +60,7 @@ A .png image is then returned
 ## Author
 [Josh Wilson](https://github.com/joshwlsn/)
 
-## Licence
-Licenced under the [New BSD License](http://opensource.org/licenses/bsd-license.php)
+## License
+Licensed under the [MIT](http://opensource.org/licenses/mit-license.php)
 
 [View the source on GitHub](https://github.com/clocklimited/qrgen)
