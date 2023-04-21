@@ -19,7 +19,7 @@ app.use(morgan('combined'))
 app.get('/', function (req, res, next) {
   fs.readFile(join(__dirname, '/Readme.md'), 'utf-8', function (err, data) {
     if (err) return next(err)
-    res.write(marked(data))
+    res.write(marked.parse(data))
     res.end()
   })
 })
