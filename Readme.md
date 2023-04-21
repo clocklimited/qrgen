@@ -58,7 +58,7 @@ A .png image is then returned
 - Request
 
 ## Author
-[Josh Wilson](https://github.com/joshwlsn/)
+[Clock Limited](https://github.com/clocklimited/)
 
 ## License
 Licensed under the [MIT](http://opensource.org/licenses/mit-license.php)
