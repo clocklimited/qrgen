@@ -44,7 +44,7 @@ http://[hostname]:port/[version]/[format]?=[data]
 - **scale** - Scale the QR code image - number of pixels per "block" (default 4)
 
 ### Example Link
-[http://qrgen.clockte.ch/v1/qr?data=http://www.example.com](http://qrgen.clockte.ch/v1/qr?data=http://www.example.com)
+[http://qrgen.clock.uk/v1/qr?data=http://www.example.com](http://qrgen.clockte.ch/v1/qr?data=http://www.example.com)
 
 A .png image is then returned
 
