@@ -48,7 +48,7 @@ app.get('/v1/:format', function (req, res, next) {
   createQr(data, { width, scale }, function (err, base64Image) {
     if (err) return next(err)
 
-    var image = new Buffer(base64Image.substring(22), 'base64')
+    var image = Buffer.from(base64Image.substring(22), 'base64')
 
     // Return buffer
     res.set({ 'Content-Type': 'image/png', 'Content-Length': image.length })
